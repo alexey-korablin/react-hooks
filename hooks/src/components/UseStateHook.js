@@ -8,8 +8,6 @@ export const UseStateHook = ({isVisible}) => {
   const [password, setPassword] = useState('');
   const [values, handleChange] = useForm('');
 
-  console.log('is visible', isVisible);
-
   return (
     <div style={{ display: `${isVisible ? 'block' : 'none'}` }}>
       <div>

@@ -6,8 +6,6 @@ export const useVisible = () => {
     return [
         values,
         name => {
-            debugger;
-            console.log(values.name);
             setValues({
                 ...values,
                 [name]: !values[name],
