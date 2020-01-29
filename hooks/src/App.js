@@ -6,6 +6,8 @@ import { useVisible } from './customHooks/useVisible';
 const  App = () => {
   const [visibilities, handleClick] = useVisible();
 
+  console.log(visibilities);
+
   return (
     <>
       <h1>Examples</h1>
@@ -18,7 +20,7 @@ const  App = () => {
         <li>
           <h2>useEffect hook examples</h2>
           <button onClick={() => {handleClick('useEffect')}}>Show example</button>
-          <UseEffectHook isVisible={visibilities['useEffect']}/>
+          {visibilities['useEffect'] && <UseEffectHook isVisible={visibilities['useEffect']}/>}
         </li>
       </ul>
     </>
