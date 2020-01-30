@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
 import { useForm } from '../customHooks/useForm';
+import { useFetch } from '../customHooks/useFetch';
+
+const getNumber = (x=10) => Math.floor(Math.random() * x);
 
 export const UseEffectHook = () => {
     const [values, setValues] = useForm({ 
@@ -9,7 +12,9 @@ export const UseEffectHook = () => {
                                     firstName: '' 
                                 });
     const [count, setCount] = useState(0);
-    const [{x, y}, setCoords] = useState({ x: 0, y: 0 })
+    const [counter, setCounter] = useState(() => 
+        JSON.parse(localStorage.getItem('counter')) || getNumber());
+    const [{x, y}, setCoords] = useState({ x: 0, y: 0 });
 
     // Хук эффекта без зависимостей будет отрабатывать при каждом изменении
     // состояния (вызовы setValue). Если же указать зависимости, то эффект
@@ -36,6 +41,15 @@ export const UseEffectHook = () => {
         }
     }, []);
 
+    // Хук эффекта может быть использован для обращения к API
+    const url = `http://numbersapi.com/${counter}/trivia`;
+    const {data, loading} = useFetch(url);
+
+    // Хук эффекта может быть использован для записи данных в localStorage
+    useEffect(() => {
+        localStorage.setItem("counter", JSON.stringify(counter));
+    }, [counter]);
+
     return (
        <div>
         <p>useEffect hook fired {count} times</p>
@@ -58,6 +72,11 @@ export const UseEffectHook = () => {
             placeholder='firstName' 
             value={values.firstName} onChange={setValues}
         />
+        <div>
+            <h3>Fetched data</h3>
+            <p>{loading ? '... data is loading' : data}</p>
+            <button onClick={() => setCounter(prev => prev += getNumber())}>Get number</button>
+        </div>
     </div>
     );
 }
