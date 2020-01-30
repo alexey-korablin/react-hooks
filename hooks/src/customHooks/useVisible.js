@@ -5,6 +5,7 @@ export const useVisible = () => {
         'useState': false,
         'useEffect': false,
         'useRef': false,
+        'useLayoutEffect': false
     });
 
     return [

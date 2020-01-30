@@ -3,13 +3,12 @@ import React from 'react';
 import { UseStateHook } from './components/UseStateHook';
 import { UseEffectHook } from './components/UseEffectHook';
 import { UseRefHook } from './components/UseRefHook';
+import { UseLayoutEffectHook } from './components/UseLayoutEffectHook';
 
 import { useVisible } from './customHooks/useVisible';
 
 const  App = () => {
   const [visibilities, handleClick] = useVisible();
-
-  console.log(visibilities);
 
   return (
     <>
@@ -29,6 +28,11 @@ const  App = () => {
           <h2>useRef hook examples</h2>
           <button onClick={() => {handleClick('useRef')}}>Show example</button>
           {visibilities['useRef'] && <UseRefHook isVisible={visibilities['useRef']}/>}
+        </li>
+        <li>
+          <h2>useLayoutEffect hook examples</h2>
+          <button onClick={() => {handleClick('useLayoutEffect')}}>Show example</button>
+          {visibilities['useLayoutEffect'] && <UseLayoutEffectHook isVisible={visibilities['useLayoutEffect']}/>}
         </li>
       </ul>
     </>
