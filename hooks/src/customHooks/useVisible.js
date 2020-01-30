@@ -1,7 +1,11 @@
 import { useState } from 'react';
 
 export const useVisible = () => {
-    const [values, setValues] = useState({'useState': false, 'useEffect': false});
+    const [values, setValues] = useState({
+        'useState': false,
+        'useEffect': false,
+        'useRef': false,
+    });
 
     return [
         values,

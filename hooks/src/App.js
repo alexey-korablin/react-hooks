@@ -1,6 +1,9 @@
 import React from 'react';
+
 import { UseStateHook } from './components/UseStateHook';
 import { UseEffectHook } from './components/UseEffectHook';
+import { UseRefHook } from './components/UseRefHook';
+
 import { useVisible } from './customHooks/useVisible';
 
 const  App = () => {
@@ -21,6 +24,11 @@ const  App = () => {
           <h2>useEffect hook examples</h2>
           <button onClick={() => {handleClick('useEffect')}}>Show example</button>
           {visibilities['useEffect'] && <UseEffectHook isVisible={visibilities['useEffect']}/>}
+        </li>
+        <li>
+          <h2>useRef hook examples</h2>
+          <button onClick={() => {handleClick('useRef')}}>Show example</button>
+          {visibilities['useRef'] && <UseRefHook isVisible={visibilities['useRef']}/>}
         </li>
       </ul>
     </>
