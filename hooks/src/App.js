@@ -5,6 +5,7 @@ import { UseEffectHook } from './components/UseEffectHook';
 import { UseRefHook } from './components/UseRefHook';
 import { UseLayoutEffectHook } from './components/UseLayoutEffectHook';
 import { UseCallbackContainer } from './components/UseCallbackContainer';
+import { UseMemoHook } from './components/UseMemoHook';
 
 import { useVisible } from './customHooks/useVisible';
 
@@ -39,6 +40,11 @@ const  App = () => {
           <h2>useCallback hook examples</h2>
           <button onClick={() => {handleClick('useCallback')}}>Show example</button>
           {visibilities['useCallback'] && <UseCallbackContainer/>}
+        </li>
+        <li>
+          <h2>useMemo hook examples</h2>
+          <button onClick={() => {handleClick('useMemo')}}>Show example</button>
+          {visibilities['useMemo'] && <UseMemoHook/>}
         </li>
       </ul>
     </>
