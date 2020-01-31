@@ -1,23 +1,6 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 
 import { useFetch } from '../customHooks/useFetch';
-
-const computeLongestWord = (arr) => {
-    if (!arr) {
-        return [];
-    }
-
-    console.log('computed');
-
-    let longestWord = '';
-    JSON.parse(arr).forEach(sentence => 
-        sentence.split(' ').forEach(w => {
-            if (w.length > longestWord.length) { longestWord = w }
-        })
-    )
-
-    return longestWord;
-}
 
 export const UseMemoHook = () => {
     const [count, setCount] = useState(0);
@@ -35,7 +18,26 @@ export const UseMemoHook = () => {
     // компонента. В противном случае они будут пересоздаваться и (если они)
     // являются частью зависимостей хука useMemo, то будет происходить
     // цикл вычислений.
-    const longestWord = useMemo(() => computeLongestWord(data), [data])
+    // В том случае, когда вынести логику по каким-то причинам нельзя
+    // можно использовать хук useCallback
+    const computeLongestWord = useCallback((arr) => {
+        if (!arr) {
+            return [];
+        }
+    
+        console.log('computed');
+    
+        let longestWord = '';
+        JSON.parse(arr).forEach(sentence => 
+            sentence.split(' ').forEach(w => {
+                if (w.length > longestWord.length) { longestWord = w }
+            })
+        )
+    
+        return longestWord;
+    }, [])
+    const longestWord = useMemo(() => 
+        computeLongestWord(data), [computeLongestWord, data])
 
     return (
         <div>
