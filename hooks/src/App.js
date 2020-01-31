@@ -4,6 +4,7 @@ import { UseStateHook } from './components/UseStateHook';
 import { UseEffectHook } from './components/UseEffectHook';
 import { UseRefHook } from './components/UseRefHook';
 import { UseLayoutEffectHook } from './components/UseLayoutEffectHook';
+import { UseCallbackContainer } from './components/UseCallbackContainer';
 
 import { useVisible } from './customHooks/useVisible';
 
@@ -33,6 +34,11 @@ const  App = () => {
           <h2>useLayoutEffect hook examples</h2>
           <button onClick={() => {handleClick('useLayoutEffect')}}>Show example</button>
           {visibilities['useLayoutEffect'] && <UseLayoutEffectHook isVisible={visibilities['useLayoutEffect']}/>}
+        </li>
+        <li>
+          <h2>useCallback hook examples</h2>
+          <button onClick={() => {handleClick('useCallback')}}>Show example</button>
+          {visibilities['useCallback'] && <UseCallbackContainer/>}
         </li>
       </ul>
     </>

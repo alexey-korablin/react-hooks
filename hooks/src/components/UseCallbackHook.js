@@ -1,6 +1,19 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 
-export const UseCallbackHook = () => {
+import { useRender } from '../customHooks/useRender';
 
-    return (<div>The useCallback hook's examples will be here</div>)
-}
+export const UseCallbackHook = React.memo(({ increment, n }) => {
+    const renderCount = useRender();
+
+    return (<>
+    {
+        n === undefined ? 
+            <div>
+                <button onClick={increment}>Increment</button>
+                <p>The component has rendered {renderCount.current} time</p>
+            </div>
+            :
+            <button onClick={() => increment(n)}>{n}</button>
+    }
+    </>);
+})
