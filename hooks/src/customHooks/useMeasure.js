@@ -1,14 +1,13 @@
 import { useLayoutEffect, useState, useRef } from 'react';
 
-export const useMeasure = (deps) => {
+export const useMeasure = (data) => {
     const [measure, setMeasure] = useState({width: 0, height: 0});
-    const divRef = useRef();
+    const ref = useRef();
 
     useLayoutEffect(() => {
-        console.log(divRef.current.getBoundingClientRect());
-        const {width, height} = divRef.current.getBoundingClientRect();
+        const {width, height} = ref.current.getBoundingClientRect();
         setMeasure({width, height});
-    }, deps);
+    }, [data]);
 
-    return [measure, divRef];
+    return [measure, ref];
 }

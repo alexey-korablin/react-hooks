@@ -21,7 +21,7 @@ export const UseLayoutEffectHook = () => {
     const {data, loading} = useFetch(url);
 
     const inputRef = useRef();
-    const [rect, divRef] = useMeasure([data]);
+    const [rect, divRef] = useMeasure(data);
 
     useLayoutEffect(() => {
         // Покажет размеры компонента
